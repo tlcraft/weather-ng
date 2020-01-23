@@ -10,4 +10,6 @@ export class AppComponent {
   title = 'weather-ng';
 
   zipCode: number;
+
+  weather: number = null;
 }
