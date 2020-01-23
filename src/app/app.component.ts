@@ -11,5 +11,10 @@ export class AppComponent {
 
   zipCode: number;
 
-  weather: number = null;
+  weather: string;
+
+  getCurrentWeather(): void {
+    const temp = 75;
+    this.weather = `${temp} degrees`;
+  }
 }
