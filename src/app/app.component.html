@@ -1,9 +1,10 @@
-<section>
-  <label>
-    Zip Code:
-    <input type="text" pattern="\d*" maxlength="5" required>
+<section class="center">
+  <label for="zipCode">
+    Enter a US Zip Code 
   </label>
-  <button>Submit</button>
+  <input id="zipCode" type="text" pattern="\d*" maxlength="5" required>
+  <button>Check Current Weather</button>
+  <div *ngIf="weather" class="weather">{{ weather }}</div>
 </section>
 
 <router-outlet></router-outlet>
