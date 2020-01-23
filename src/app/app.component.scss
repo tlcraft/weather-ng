@@ -1,0 +1,25 @@
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 100px;
+    width: 15%;
+}
+
+label {
+    font-size: 2em;
+}
+
+input {
+    margin-top: 10px;
+    font-size: 2em;
+}
+
+button {
+    margin-top: 10px;
+    font-size: 2em;
+}
+
+.weather {
+    font-size: 4em;
+}
