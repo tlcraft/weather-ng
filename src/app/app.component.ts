@@ -15,6 +15,6 @@ export class AppComponent {
 
   getCurrentWeather(): void {
     const temp = 75;
-    this.weather = `${temp} degrees`;
+    this.weather = `${this.zipCode} is currently ${temp} degrees`;
   }
 }
