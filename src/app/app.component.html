@@ -2,7 +2,7 @@
   <label for="zipCode">
     Enter a US Zip Code 
   </label>
-  <input id="zipCode" type="text" pattern="\d*" maxlength="5" required>
+  <input [(ngModel)]="zipCode" id="zipCode" type="text" pattern="\d*" maxlength="5" required>
   <button (click)="getCurrentWeather()">Check Current Weather</button>
   <div *ngIf="weather" class="weather">{{ weather }}</div>
 </section>
