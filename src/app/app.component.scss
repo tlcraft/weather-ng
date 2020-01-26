@@ -25,3 +25,8 @@ button {
 .weather {
     font-size: 4em;
 }
+
+input.ng-invalid
+{
+    border: 2px solid #f00;
+}
