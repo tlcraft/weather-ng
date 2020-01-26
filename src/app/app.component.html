@@ -1,10 +1,10 @@
-<section class="center">
+<form class="center" [formGroup]="form">
   <label for="zipCode">
-    Enter a US Zip Code 
+    Enter a US Zip Code
   </label>
-  <input [(ngModel)]="zipCode" id="zipCode" name="zipCode" type="text" pattern="\d{5}|\d{5}-\d{4}" required>
-  <button (click)="getCurrentWeather()">Check Current Weather</button>
+  <input formControlName="zipCode" id="zipCode" name="zipCode" type="text">
+  <button (click)="getCurrentWeather()" [disabled]="form.invalid">Check Current Weather</button>
   <div *ngIf="weather" class="weather">{{ weather }}</div>
-</section>
+</form>
 
 <router-outlet></router-outlet>
