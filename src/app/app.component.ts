@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { WeatherService } from './Services/weather.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,8 @@ export class AppComponent implements OnInit {
   weather: string;
   form: FormGroup;
 
+  constructor(private weatherService: WeatherService) {}
+
   ngOnInit() {
     this.form = new FormGroup({
       zipCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')])
@@ -18,8 +21,19 @@ export class AppComponent implements OnInit {
   }
 
   getCurrentWeather(): void {
-    const temp = 75;
-    this.weather = `${this.zipCode} is currently ${temp} degrees`;
+    if(this.zipCode) {
+      this.weatherService
+      .getCurrentWeather(this.zipCode)
+      .subscribe(
+        (currentWeather: string) => {
+          this.weather = currentWeather;
+        },
+        error => {
+          this.weather = 'An error occured.';
+          console.error(error);
+        }
+      );
+    }
   }
 
   get zipCode() {
