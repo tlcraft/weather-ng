@@ -25,8 +25,11 @@ export class AppComponent implements OnInit {
       this.weatherService
       .getCurrentWeather(this.zipCode)
       .subscribe(
-        (currentWeather: string) => {
-          this.weather = currentWeather;
+        (currentWeather: any) => {
+          if(currentWeather) {
+            const clearSkyReport = currentWeather.weather && currentWeather.weather[0] &&  `Skies are ${currentWeather.weather[0].main}.`;
+            this.weather = `It's ${currentWeather.main.temp} degrees in ${currentWeather.name}! ${clearSkyReport}`;
+          }
         },
         error => {
           this.weather = 'An error occured.';
