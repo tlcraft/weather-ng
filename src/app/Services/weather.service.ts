@@ -10,9 +10,9 @@ export class WeatherService {
 
   constructor(private http: HttpClient) { }
 
-  getCurrentWeather(zipCode: string): Observable<string> {
+  getCurrentWeather(zipCode: string): Observable<any> {
     const params = new HttpParams().set('zipCode', zipCode);
-    const currentWeather = this.http.get<string>(environment.apiUrl + '/currentWeather', { params: params });
+    const currentWeather = this.http.get<any>(environment.apiUrl + '/currentWeather', { params: params });
     return currentWeather;
   }
 
