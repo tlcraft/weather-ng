@@ -27,8 +27,8 @@ export class AppComponent implements OnInit {
       .subscribe(
         (currentWeather: any) => {
           if(currentWeather) {
-            const clearSkyReport = currentWeather.weather && currentWeather.weather[0] &&  `Skies are ${currentWeather.weather[0].main}.`;
-            this.weather = `It's ${currentWeather.main.temp} degrees in ${currentWeather.name}! ${clearSkyReport}`;
+            const weatherDescription = currentWeather.weather && currentWeather.weather[0] &&  `${currentWeather.weather[0].main}.`;
+            this.weather = `It's ${currentWeather.main.temp} degrees in ${currentWeather.name}! ${weatherDescription}`;
           }
         },
         error => {
