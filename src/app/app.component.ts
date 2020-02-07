@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { WeatherService } from './Services/weather.service';
+import { Weather } from 'src/app/Models/weather.model';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit {
       this.weatherService
       .getCurrentWeather(this.zipCode)
       .subscribe(
-        (currentWeather: any) => {
+        (currentWeather: Weather) => {
           if(currentWeather) {
             const weatherDescription = currentWeather.weather && currentWeather.weather[0] &&  `${currentWeather.weather[0].main}.`;
             this.weather = `It's ${currentWeather.main.temp} degrees in ${currentWeather.name}! ${weatherDescription}`;
