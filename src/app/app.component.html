@@ -1,6 +1,6 @@
 <form class="center" [formGroup]="form">
   <label for="zipCode">
-    Enter a US Zip Code
+    Enter a US 5 digit zip code
   </label>
   <input formControlName="zipCode" id="zipCode" name="zipCode" type="text">
   <button (click)="getCurrentWeather()" [disabled]="form.invalid">Check Current Weather</button>
