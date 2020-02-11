@@ -11,6 +11,7 @@ import { Weather } from 'src/app/Models/weather.model';
 
 export class AppComponent implements OnInit {
   weather: string;
+  iconSource: string = '';
   form: FormGroup;
 
   constructor(private weatherService: WeatherService) {}
@@ -28,8 +29,9 @@ export class AppComponent implements OnInit {
       .subscribe(
         (currentWeather: Weather) => {
           if(currentWeather) {
-            const weatherDescription = currentWeather.weather && currentWeather.weather[0] &&  `${currentWeather.weather[0].main}.`;
-            this.weather = `It's ${currentWeather.main.temp} degrees in ${currentWeather.name}! ${weatherDescription}`;
+            const icon = currentWeather.weather && currentWeather.weather[0] && currentWeather.weather[0].icon;
+            this.iconSource = `http://openweathermap.org/img/w/${icon}.png`;
+            this.weather = `It's ${currentWeather.main.temp} degrees in ${currentWeather.name}!`;
           }
         },
         error => {
