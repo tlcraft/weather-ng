@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { WeatherService } from './Services/weather.service';
+import { Weather } from 'src/app/Models/weather.model';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { WeatherService } from './Services/weather.service';
 
 export class AppComponent implements OnInit {
   weather: string;
+  iconSource: string = '';
   form: FormGroup;
 
   constructor(private weatherService: WeatherService) {}
@@ -25,10 +27,11 @@ export class AppComponent implements OnInit {
       this.weatherService
       .getCurrentWeather(this.zipCode)
       .subscribe(
-        (currentWeather: any) => {
+        (currentWeather: Weather) => {
           if(currentWeather) {
-            const clearSkyReport = currentWeather.weather && currentWeather.weather[0] &&  `Skies are ${currentWeather.weather[0].main}.`;
-            this.weather = `It's ${currentWeather.main.temp} degrees in ${currentWeather.name}! ${clearSkyReport}`;
+            const icon = currentWeather.weather && currentWeather.weather[0] && currentWeather.weather[0].icon;
+            this.iconSource = `http://openweathermap.org/img/w/${icon}.png`;
+            this.weather = `It's ${currentWeather.main.temp} degrees in ${currentWeather.name}!`;
           }
         },
         error => {
