@@ -1,3 +1,3 @@
-import { createAction } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 
-export const getWeather = createAction('[Weather] GetCurrentWeather');
+export const getWeather = createAction('[Weather] GetCurrentWeather', props<{ zipCode: string }>());
