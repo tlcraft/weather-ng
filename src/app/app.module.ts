@@ -5,6 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { WeatherEffects } from './weather.effects';
+import { Store } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
+import { weatherReducer } from './weather.reducer';
 
 @NgModule({
   declarations: [
@@ -15,9 +20,11 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    EffectsModule.forRoot([WeatherEffects]),
+    StoreModule.forRoot( { weather: weatherReducer })
   ],
-  providers: [],
+  providers: [Store],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
