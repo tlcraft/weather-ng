@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
+import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { WeatherService } from './Services/weather.service';
 import { getWeather } from './weather.actions';
@@ -15,7 +15,7 @@ export class WeatherEffects {
             mergeMap(action => this.weatherService.getCurrentWeather(action.zipCode)
                 .pipe(
                     map(weather => ({ type: '[Weather] GetCurrentWeather', payload: weather })),
-                    catchError(() => EMPTY)
+                    catchError(() => of({ type: '[Weather] GetCurrentWeather' }))
                 )
             )
         )
