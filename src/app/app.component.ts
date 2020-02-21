@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { WeatherService } from './Services/weather.service';
 import { Weather } from 'src/app/Models/weather.model';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,11 @@ import { Weather } from 'src/app/Models/weather.model';
 
 export class AppComponent implements OnInit {
   weather: string;
-  iconSource: string = '';
+  iconSource: string;
   form: FormGroup;
+  currentWeather$: Observable<Weather> = this.store.select(state => state);
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private store: Store<Weather>) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -24,15 +26,12 @@ export class AppComponent implements OnInit {
 
   getCurrentWeather(): void {
     if(this.zipCode) {
-      this.weatherService
-      .getCurrentWeather(this.zipCode)
-      .subscribe(
-        (currentWeather: Weather) => {
-          if(currentWeather) {
-            const icon = currentWeather.weather && currentWeather.weather[0] && currentWeather.weather[0].icon;
-            this.iconSource = `http://openweathermap.org/img/w/${icon}.png`;
-            this.weather = `It's ${currentWeather.main.temp} degrees in ${currentWeather.name}!`;
-          }
+      this.store.dispatch( { type: '[Weather] GetCurrentWeather', prop: this.zipCode } );
+      this.currentWeather$.subscribe(
+        currentWeather => {
+          const icon = currentWeather && currentWeather[0] && currentWeather[0].icon;
+          this.iconSource = `http://openweathermap.org/img/w/${icon}.png`;
+          this.weather = `It's ${currentWeather.main.temp} degrees in ${currentWeather.name}!`;
         },
         error => {
           this.weather = 'An error occured.';
