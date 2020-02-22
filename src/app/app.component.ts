@@ -29,9 +29,11 @@ export class AppComponent implements OnInit {
       this.store.dispatch( { type: '[Weather] GetCurrentWeather', prop: this.zipCode } );
       this.currentWeather$.subscribe(
         currentWeather => {
-          const icon = currentWeather && currentWeather[0] && currentWeather[0].icon;
-          this.iconSource = `http://openweathermap.org/img/w/${icon}.png`;
-          this.weather = `It's ${currentWeather.main.temp} degrees in ${currentWeather.name}!`;
+          if(currentWeather && currentWeather.weather) {
+            const icon = currentWeather.weather[0] && currentWeather.weather[0].icon;
+            this.iconSource = icon ? `http://openweathermap.org/img/w/${icon}.png` : '';
+            this.weather = `It's ${currentWeather.main && currentWeather.main.temp} degrees in ${currentWeather.name}!`;
+          }
         },
         error => {
           this.weather = 'An error occured.';
