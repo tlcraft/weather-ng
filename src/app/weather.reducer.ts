@@ -2,10 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { getWeather } from './weather.actions';
 import { Weather } from './Models/weather.model';
 
-export const initialState: Weather = {
-    main: { temp: 0 },
-    name: ''
-} as Weather;
+export const initialState: Weather = null;
 
 const _weatherReducer = createReducer(initialState, 
     on(getWeather, state => state),
