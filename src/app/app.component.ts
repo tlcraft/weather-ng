@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 
   getCurrentWeather(): void {
     if(this.zipCode) {
-      this.store.dispatch( { type: '[Weather] GetCurrentWeather', prop: this.zipCode } );
+      this.store.dispatch( { type: '[Weather] GetCurrentWeather', zipCode: this.zipCode } );
       this.currentWeather$.subscribe(
         currentWeather => {
           if(currentWeather && currentWeather.weather) {
