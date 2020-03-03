@@ -1,3 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
-export const getWeather = createAction('[Weather] GetCurrentWeather', props<{ zipCode: string }>());
+export enum WeatherActionTypes {
+    GetCurrentWeather = '[Weather] GetCurrentWeather'
+}
+
+export const getWeather = createAction(WeatherActionTypes.GetCurrentWeather, props<{ zipCode: string }>());
