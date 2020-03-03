@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Weather } from 'src/app/Models/weather.model';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { WeatherActionTypes } from './weather.actions';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,7 @@ export class AppComponent implements OnInit {
 
   getCurrentWeather(): void {
     if(this.zipCode) {
-      this.store.dispatch( { type: '[Weather] GetCurrentWeather', zipCode: this.zipCode } );
+      this.store.dispatch( { type: WeatherActionTypes.GetCurrentWeather, zipCode: this.zipCode } );
       this.currentWeather$.subscribe(
         currentWeather => {
           if(currentWeather && currentWeather.weather) {
