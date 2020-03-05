@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { getWeather } from './weather.actions';
-import { Weather } from './Models/weather.model';
+import { getWeather } from '../actions/weather.actions';
+import { Weather } from '../../Models/weather.model';
 
 export const initialState: Weather = null;
 
