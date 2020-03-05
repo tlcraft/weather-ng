@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Weather } from 'src/app/Models/weather.model';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { WeatherAction } from './weather.actions';
+import { WeatherAction } from './store/actions/weather.actions';
 
 @Component({
   selector: 'app-root',
