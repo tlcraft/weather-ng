@@ -14,8 +14,8 @@ export class WeatherEffects {
             ofType(getWeather),
             mergeMap(action => this.weatherService.getCurrentWeather(action.zipCode)
                 .pipe(
-                    map(weather => ({ type: WeatherActionTypes.GetCurrentWeather, zipCode: weather })),
-                    catchError(() => of({ type: WeatherActionTypes.GetCurrentWeather, zipCode: null }))
+                    map(weather => ({ type: WeatherActionTypes.GetCurrentWeather, payload: weather })),
+                    catchError(() => of({ type: WeatherActionTypes.GetCurrentWeather, payload: null }))
                 )
             )
         )
