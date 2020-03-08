@@ -1,7 +1,9 @@
 import { createAction, props, Action } from '@ngrx/store';
 
 export enum WeatherActionTypes {
-    GetCurrentWeather = '[Weather] GetCurrentWeather'
+    GetCurrentWeather = '[Weather] GetCurrentWeather',
+    GetCurrentWeatherSuccess = '[Weather] GetCurrentWeatherSuccess',
+    GetCurrentWeatherFailure = '[Weather] GetCurrentWeatherFailure'
 }
 
 export class WeatherAction implements Action {
