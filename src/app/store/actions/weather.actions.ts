@@ -16,3 +16,4 @@ export class WeatherAction implements Action {
 }
 
 export const getWeather = createAction(WeatherActionTypes.GetCurrentWeather, props<{ zipCode: string }>());
+export const getWeatherSuccess = createAction(WeatherActionTypes.GetCurrentWeatherSuccess);
