@@ -1,19 +1,18 @@
 import { createAction, props, Action } from '@ngrx/store';
 
 export enum WeatherActionTypes {
-    GetCurrentWeather = '[Weather] GetCurrentWeather',
-    GetCurrentWeatherSuccess = '[Weather] GetCurrentWeatherSuccess',
-    GetCurrentWeatherFailure = '[Weather] GetCurrentWeatherFailure'
+    GET_CURRENT_WEATHER = '[Weather] GetCurrentWeather',
+    GET_CURRENT_WEATHER_SUCCESS = '[Weather] GetCurrentWeatherSuccess',
+    GET_CURRENT_WEATHER_FAILURE = '[Weather] GetCurrentWeatherFailure'
 }
 
 export class WeatherAction implements Action {
-    readonly type = WeatherActionTypes.GetCurrentWeather;
-    zipCode: string;
+    readonly type = WeatherActionTypes.GET_CURRENT_WEATHER;
 
-    constructor(zipCode: string) {
-        this.zipCode = zipCode;
+    constructor(public payload: string) {
+        this.payload = payload;
     }
 }
 
-export const getWeather = createAction(WeatherActionTypes.GetCurrentWeather, props<{ zipCode: string }>());
-export const getWeatherSuccess = createAction(WeatherActionTypes.GetCurrentWeatherSuccess);
+export const getWeather = createAction(WeatherActionTypes.GET_CURRENT_WEATHER, props<{ zipCode: string }>());
+export const getWeatherSuccess = createAction(WeatherActionTypes.GET_CURRENT_WEATHER_SUCCESS);
