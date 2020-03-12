@@ -1,4 +1,5 @@
-import { createAction, props, Action } from '@ngrx/store';
+import { Action } from '@ngrx/store';
+import { Weather } from 'src/app/Models/weather.model';
 
 export enum WeatherActionTypes {
     GET_CURRENT_WEATHER = '[Weather] GetCurrentWeather',
@@ -9,10 +10,22 @@ export enum WeatherActionTypes {
 export class WeatherAction implements Action {
     readonly type = WeatherActionTypes.GET_CURRENT_WEATHER;
 
-    constructor(public payload: string) {
-        this.payload = payload;
-    }
+    constructor(public payload: { zipCode: string }) {}
 }
 
-export const getWeather = createAction(WeatherActionTypes.GET_CURRENT_WEATHER, props<{ zipCode: string }>());
-export const getWeatherSuccess = createAction(WeatherActionTypes.GET_CURRENT_WEATHER_SUCCESS);
+export class WeatherActionSuccess implements Action {
+    readonly type = WeatherActionTypes.GET_CURRENT_WEATHER_SUCCESS;
+
+    constructor(public payload: { weather: Weather}) {}
+}
+
+export class WeatherActionFailure implements Action {
+    readonly type = WeatherActionTypes.GET_CURRENT_WEATHER_FAILURE;
+
+    constructor(public payload: { error: any }) {}
+}
+
+export type WeatherActions = 
+    WeatherAction 
+    | WeatherActionSuccess
+    | WeatherActionFailure;
