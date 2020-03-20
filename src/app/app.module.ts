@@ -20,7 +20,7 @@ import { weatherReducer } from './store/reducers/weather.reducer';
     ReactiveFormsModule,
     HttpClientModule,
     EffectsModule.forRoot([WeatherEffects]),
-    StoreModule.forRoot( { weather: weatherReducer })
+    StoreModule.forRoot( { weather: weatherReducer } )
   ],
   providers: [Store],
   bootstrap: [AppComponent]
