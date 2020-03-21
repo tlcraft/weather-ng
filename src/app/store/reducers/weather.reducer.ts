@@ -4,11 +4,20 @@ import { WeatherState, getInitialState } from '../state/weather.state';
 export function weatherReducer(state: WeatherState = getInitialState(), action: WeatherActions): WeatherState {
     switch(action.type) {
         case WeatherActionTypes.GET_CURRENT_WEATHER:
-            return Object.assign({}, state, { error: null });
+        {
+            const newState = Object.assign({}, state, { error: null });
+            return newState;
+        }
         case WeatherActionTypes.GET_CURRENT_WEATHER_SUCCESS:
-            return Object.assign({}, state, { weather: action.payload.weather, error: null });
+        {    
+            const newState = Object.assign({}, state, { weather: action.payload.weather, error: null });
+            return newState;
+        }
         case WeatherActionTypes.GET_CURRENT_WEATHER_FAILURE:
-            return Object.assign({}, state, { weather: null, error: action.payload.error });
+        {        
+            const newState = Object.assign({}, state, { weather: null, error: action.payload.error });
+            return newState;
+        }
         default:
             return state;
     }
