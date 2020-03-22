@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   weather: string;
   iconSource: string;
   form: FormGroup;
-  currentWeather$: Observable<Weather> = this.store.select(state => state.weather);
+  currentWeather$: Observable<Weather>;
 
   constructor(private store: Store<WeatherState>) {}
 
@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
     this.form = new FormGroup({
       zipCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')])
     });
+    this.currentWeather$ = this.store.select(state => state.weather);
   }
 
   getCurrentWeather(): void {
