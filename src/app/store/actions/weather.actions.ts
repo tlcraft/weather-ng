@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Weather } from 'src/app/Models/weather.model';
+import { Weather } from 'src/app/models/weather.model';
 
 export enum WeatherActionTypes {
     GET_CURRENT_WEATHER = '[Weather] GetCurrentWeather',

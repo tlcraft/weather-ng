@@ -1,4 +1,4 @@
-import { Weather } from 'src/app/Models/weather.model';
+import { Weather } from 'src/app/models/weather.model';
 
 export interface WeatherState {
     weather: Weather;

@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { WeatherAction } from './store/actions/weather.actions';
 import { WeatherState } from './store/state/weather.state';
-import { Weather } from './Models/weather.model';
+import { Weather } from './models/weather.model';
 
 @Component({
   selector: 'app-root',
