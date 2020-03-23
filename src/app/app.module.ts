@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WeatherEffects } from './store/effects/weather.effects';
 import { weatherReducer } from './store/reducers/weather.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { weatherReducer } from './store/reducers/weather.reducer';
     ReactiveFormsModule,
     HttpClientModule,
     EffectsModule.forRoot([WeatherEffects]),
-    StoreModule.forRoot( { weather: weatherReducer } )
+    StoreModule.forRoot( { weatherState: weatherReducer } ),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [Store],
   bootstrap: [AppComponent]
