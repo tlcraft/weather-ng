@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     this.form = new FormGroup({
       zipCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')])
     });
-    this.currentWeather$ = this.store.select(state => state.weather);
+    this.currentWeather$ = this.store.select(state => state.currentWeather);
   }
 
   getCurrentWeather(): void {

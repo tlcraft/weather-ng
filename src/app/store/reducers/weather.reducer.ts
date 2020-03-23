@@ -10,12 +10,12 @@ export function weatherReducer(state: WeatherState = getInitialState(), action: 
         }
         case WeatherActionTypes.GET_CURRENT_WEATHER_SUCCESS:
         {    
-            const newState = Object.assign({}, state, { weather: action.payload.weather, error: null });
+            const newState = Object.assign({}, state, { currentWeather: action.payload.currentWeather, error: null });
             return newState;
         }
         case WeatherActionTypes.GET_CURRENT_WEATHER_FAILURE:
         {        
-            const newState = Object.assign({}, state, { weather: null, error: action.payload.error });
+            const newState = Object.assign({}, state, { currentWeather: null, error: action.payload.error });
             return newState;
         }
         default:

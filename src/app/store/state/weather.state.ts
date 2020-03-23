@@ -1,12 +1,12 @@
 import { Weather } from 'src/app/models/weather.model';
 
 export interface WeatherState {
-    weather: Weather;
+    currentWeather: Weather;
     error: any;
 }
 
 export const initialWeatherState: WeatherState = {
-    weather: null,
+    currentWeather: null,
     error: null
 };
 
