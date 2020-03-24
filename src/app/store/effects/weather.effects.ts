@@ -3,7 +3,7 @@ import { Actions, ofType, Effect } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, catchError,  switchMap } from 'rxjs/operators';
 import { WeatherService } from '../../services/weather.service';
-import { WeatherActionTypes, WeatherAction, WeatherActionSuccess, WeatherActionFailure } from '../actions/weather.actions';
+import { WeatherActionTypes, GetWeatherAction, GetWeatherActionSuccess, GetWeatherActionFailure } from '../actions/weather.actions';
 
 @Injectable()
 export class WeatherEffects {
@@ -11,12 +11,12 @@ export class WeatherEffects {
 
     @Effect()
     getCurrentWeather$ = this.actions$.pipe(
-        ofType<WeatherAction>(WeatherActionTypes.GET_CURRENT_WEATHER),
+        ofType<GetWeatherAction>(WeatherActionTypes.GET_CURRENT_WEATHER),
         switchMap(action => {
             return this.weatherService.getCurrentWeather(action.payload.zipCode)
             .pipe(
-                map(weather => new WeatherActionSuccess({ currentWeather: weather })),
-                catchError(error => of(new WeatherActionFailure({ error: error })))
+                map(weather => new GetWeatherActionSuccess({ currentWeather: weather })),
+                catchError(error => of(new GetWeatherActionFailure({ error: error })))
             )
         })
     );
