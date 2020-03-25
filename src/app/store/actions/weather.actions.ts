@@ -25,7 +25,7 @@ export class GetWeatherActionFailure implements Action {
     constructor(public payload: { error: any }) {}
 }
 
-export type WeatherActions = 
+export type WeatherAction = 
     GetWeatherAction 
     | GetWeatherActionSuccess
     | GetWeatherActionFailure;
