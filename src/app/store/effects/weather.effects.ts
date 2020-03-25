@@ -15,7 +15,9 @@ export class WeatherEffects {
         switchMap(action => {
             return this.weatherService.getCurrentWeather(action.payload.zipCode)
             .pipe(
-                map(weather => new GetWeatherActionSuccess({ currentWeather: weather })),
+                map(weather => { 
+                    return new GetWeatherActionSuccess({ currentWeather: weather })
+                }),
                 catchError(error => of(new GetWeatherActionFailure({ error: error })))
             )
         })
