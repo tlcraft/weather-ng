@@ -4,8 +4,8 @@
   </label>
   <input formControlName="zipCode" id="zipCode" name="zipCode" type="text">
   <button (click)="getCurrentWeather()" [disabled]="form.invalid">Check Current Weather</button>
-  <div *ngIf="weather">
-    <div class="weather">{{ weather }}</div>
+  <div *ngIf="weatherMessage">
+    <div class="weather">{{ weatherMessage }}</div>
     <img [src]="iconSource" alt="weather icon">
   </div>
 </form>

@@ -13,10 +13,12 @@ import { Weather } from './models/weather.model';
 })
 
 export class AppComponent implements OnInit {
-  weather: string;
+  weatherMessage: string;
   iconSource: string;
   form: FormGroup;
   currentWeather$: Observable<Weather>;
+  loading$: Observable<Boolean>;
+  error$: Observable<Error>;
 
   constructor(private store: Store<WeatherState>) {}
 
@@ -25,6 +27,8 @@ export class AppComponent implements OnInit {
       zipCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')])
     });
     this.currentWeather$ = this.store.select(state => state.currentWeather);
+    this.loading$ = this.store.select(store => store.loading);
+    this.error$ = this.store.select(store => store.error);
   }
 
   getCurrentWeather(): void {
@@ -35,11 +39,11 @@ export class AppComponent implements OnInit {
           if(currentWeather && currentWeather.weather) {
             const icon = currentWeather.weather[0] && currentWeather.weather[0].icon;
             this.iconSource = icon ? `http://openweathermap.org/img/w/${icon}.png` : '';
-            this.weather = `It's ${currentWeather.main && currentWeather.main.temp} degrees in ${currentWeather.name}!`;
+            this.weatherMessage = `It's ${currentWeather.main && currentWeather.main.temp} degrees in ${currentWeather.name}!`;
           }
         },
         error => {
-          this.weather = 'An error occured.';
+          this.weatherMessage = 'An error occured.';
           console.error(error);
         }
       );
