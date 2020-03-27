@@ -5,17 +5,31 @@ export function weatherReducer(state: WeatherState = getInitialState(), action: 
     switch(action.type) {
         case WeatherActionTypes.GET_CURRENT_WEATHER:
         {
-            const newState = Object.assign({}, state, { loading: true });
+            const newState = { 
+                ...state, 
+                loading: true 
+            };
+
             return newState;
         }
         case WeatherActionTypes.GET_CURRENT_WEATHER_SUCCESS:
         {    
-            const newState = Object.assign({}, state, { currentWeather: action.payload.currentWeather, loading: false });
+            const newState = { 
+                ...state, 
+                currentWeather: action.payload.currentWeather, 
+                loading: false 
+            };
+
             return newState;
         }
         case WeatherActionTypes.GET_CURRENT_WEATHER_FAILURE:
         {        
-            const newState = Object.assign({}, state, { loading: false, error: action.payload.error });
+            const newState = {
+                ...state,
+                error: action.payload.error,
+                loading: false
+            };
+
             return newState;
         }
         default:
