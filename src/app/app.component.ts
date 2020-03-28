@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { GetWeatherAction } from './store/actions/weather.actions';
-import { WeatherState } from './store/state/weather.state';
 import { Weather } from './models/weather.model';
+import { AppState } from './store/state/app.state';
 
 @Component({
   selector: 'app-root',
@@ -20,15 +20,16 @@ export class AppComponent implements OnInit {
   loading$: Observable<Boolean>;
   error$: Observable<Error>;
 
-  constructor(private store: Store<WeatherState>) {}
+  constructor(private store: Store<AppState>) {
+    this.currentWeather$ = this.store.pipe(select(state => state.weatherState.currentWeather));
+    this.loading$ = this.store.pipe(select(store => store.weatherState.loading));
+    this.error$ = this.store.pipe(select(store => store.weatherState.error));
+  }
 
   ngOnInit() {
     this.form = new FormGroup({
       zipCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')])
     });
-    this.currentWeather$ = this.store.select(state => state.currentWeather);
-    this.loading$ = this.store.select(store => store.loading);
-    this.error$ = this.store.select(store => store.error);
   }
 
   getCurrentWeather(): void {
